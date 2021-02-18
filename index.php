@@ -11,7 +11,7 @@ $currentDir = $_SERVER['DOCUMENT_ROOT']
   <body>
     <p>
       This page should not be visible, please set your document root to the
-      public html direction.
+      public html directory.
     </p>
     <h2>Apache Ex.</h2>
     <pre>
