@@ -1,4 +1,4 @@
-
+<?php
 $error = "<pre style='font-size:24px;'>If you see this, make sure libapache-php is installed or
 php-fpm is installed and php being passed from nginx to php-fpm</pre>";
 $currentDir = $_SERVER['DOCUMENT_ROOT']
