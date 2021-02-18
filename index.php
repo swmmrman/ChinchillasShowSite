@@ -1,5 +1,5 @@
 <?php
-$currentDir = $_SERVER[DOCUMENT_ROOT]
+$currentDir = $_SERVER['DOCUMENT_ROOT']
 ?>
 <!doctype html>
 <html lang="en">
