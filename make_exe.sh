@@ -1,4 +1,5 @@
-rm -r target/x84_64-pc-windows-gnu/release/
+#!/bin/bash
+
 cargo build --target x86_64-pc-windows-gnu --release
 if [ -e chinchillas_show_site ]; then
     rm -r chinchillas_show_site
