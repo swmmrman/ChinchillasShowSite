@@ -18,9 +18,19 @@ async fn js(js_file: &str) -> Option<NamedFile> {
     NamedFile::open(Path::new("public_html/js").join(js_file)).await.ok()
 }
 
+#[get("/<req>")]
+async fn def_route(req: &str) -> Option<NamedFile>{
+    if req == "index.html" { 
+        index().await
+    }
+    else {
+        index().await
+    }
+}
+
 
 #[launch]
 fn rocekt() -> _ {
     rocket::build()
-        .mount("/", routes![index, css, js])
+        .mount("/", routes![index, css, js, def_route])
 }
