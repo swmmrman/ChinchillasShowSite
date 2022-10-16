@@ -1,5 +1,6 @@
 use std::path::Path;
 use rocket::fs::NamedFile;
+use rocket::response::Redirect;
 
 #[macro_use] extern crate rocket;
 
@@ -19,13 +20,12 @@ async fn js(js_file: &str) -> Option<NamedFile> {
 }
 
 #[get("/<req>")]
-async fn def_route(req: &str) -> Option<NamedFile>{
+async fn def_route(req: &str) -> Option<Redirect>{
     if req == "index.html" { 
-        index().await
+        Some(Redirect::to(uri!(index)))
     }
     else {
-        //Todo add a proper 404 return
-        index().await
+        None
     }
 }
 
