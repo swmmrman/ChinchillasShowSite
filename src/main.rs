@@ -24,6 +24,7 @@ async fn def_route(req: &str) -> Option<NamedFile>{
         index().await
     }
     else {
+        //Todo add a proper 404 return
         index().await
     }
 }
