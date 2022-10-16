@@ -1,4 +1,4 @@
-use std::path::{Path, PathBuf};
+use std::path::Path;
 use rocket::fs::NamedFile;
 
 #[macro_use] extern crate rocket;
