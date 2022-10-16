@@ -9,8 +9,8 @@ async fn css(css_file: &str) -> Option<NamedFile> {
 }
 
 #[get("/")]
-fn index() -> &'static str {
-    "Hello"
+async fn index() -> Option<NamedFile> {
+    NamedFile::open(Path::new("template").join("main.html")).await.ok()
 }
 
 #[get("/js/<js_file>")]
