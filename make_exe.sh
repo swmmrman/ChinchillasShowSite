@@ -16,3 +16,5 @@ fi
 
 pushd chinchillas_show_site
 zip chinchillas_show_site.zip -r *
+mv chinchillas_show_site.zip ../
+popd
