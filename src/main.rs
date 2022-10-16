@@ -5,7 +5,7 @@ use rocket::fs::NamedFile;
 
 #[get("/css/<css_file>")]
 async fn css(css_file: &str) -> Option<NamedFile> {
-    NamedFile::open(Path::new("css/").join(css_file)).await.ok()
+    NamedFile::open(Path::new("public_html/css/").join(css_file)).await.ok()
 }
 
 #[get("/")]
@@ -15,7 +15,7 @@ async fn index() -> Option<NamedFile> {
 
 #[get("/js/<js_file>")]
 async fn js(js_file: &str) -> Option<NamedFile> {
-    NamedFile::open(Path::new("js").join(js_file)).await.ok()
+    NamedFile::open(Path::new("public_html/js").join(js_file)).await.ok()
 }
 
 
