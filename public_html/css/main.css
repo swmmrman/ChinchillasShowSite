@@ -48,3 +48,18 @@ body {
 article {
     padding: 1em;
 }
+h1 {
+    text-align: center;
+}
+h2 {
+    text-align: center;
+}
+h3 {
+    text-align: center;
+}
+#logo {
+    display: block;
+    width: 10em;
+    height: auto;
+    margin: 0 auto;
+}
