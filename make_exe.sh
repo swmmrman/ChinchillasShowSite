@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cargo build --target x86_64-pc-windows-gnu --release
+cross build --target x86_64-pc-windows-gnu --release
 if [ -e chinchillas_show_site-windows ]; then
     rm -r chinchillas_show_site-windows
 fi
