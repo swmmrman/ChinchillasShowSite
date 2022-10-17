@@ -21,7 +21,8 @@ async fn js(js_file: &str) -> Option<NamedFile> {
 
 #[get("/<req>")]
 async fn def_route(req: &str) -> Option<Redirect>{
-    if req == "index.html" { 
+    let indexs = ["index.html", "index.php"];
+    if indexs.contains(&req)  { 
         Some(Redirect::to(uri!(index)))
     }
     else {
