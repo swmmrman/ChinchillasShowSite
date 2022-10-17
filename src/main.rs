@@ -4,7 +4,6 @@ use rocket::response::Redirect;
 use rocket::response::content;
 use rocket::tokio::fs;
 
-
 #[macro_use] extern crate rocket;
 
 #[get("/css/<css_file>")]
@@ -36,9 +35,24 @@ async fn def_route(req: &str) -> Option<Redirect>{
     }
 }
 
+#[get("/images/<img>")]
+async fn images(img: &str) -> Option<NamedFile> {
+    if img == "logo.png" {
+        if std::fs::metadata(Path::new("logo.jpg")).is_ok() {
+            NamedFile::open(Path::new("logo.jpg")).await.ok()
+        }
+        else {
+            NamedFile::open(Path::new("public_html/images/logo.jpg")).await.ok()
+        }
+    }
+    else {
+        NamedFile::open(Path::new("public_html/images/").join(img)).await.ok()
+    }
+}
+
 
 #[launch]
 fn rocekt() -> _ {
     rocket::build()
-        .mount("/", routes![index, css, js, def_route])
+        .mount("/", routes![index, css, js, def_route, images])
 }
