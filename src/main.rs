@@ -1,6 +1,9 @@
 use std::path::Path;
 use rocket::fs::NamedFile;
 use rocket::response::Redirect;
+use rocket::response::content;
+use rocket::tokio::fs;
+
 
 #[macro_use] extern crate rocket;
 
@@ -10,8 +13,11 @@ async fn css(css_file: &str) -> Option<NamedFile> {
 }
 
 #[get("/")]
-async fn index() -> Option<NamedFile> {
-    NamedFile::open(Path::new("template").join("main.html")).await.ok()
+async fn index() -> content::RawHtml<String> {
+    let index: String = fs::read_to_string(Path::new("template").join("index.html")).await.unwrap();
+    let template = fs::read_to_string(Path::new("template").join("main.html")).await.unwrap();
+    let output = template.replace("[content]", &index);
+    content::RawHtml(output)
 }
 
 #[get("/js/<js_file>")]
