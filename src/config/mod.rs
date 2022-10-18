@@ -2,12 +2,12 @@ use toml;
 use serde_derive::Deserialize;
 
 #[derive(Deserialize, Debug)]
-pub struct config {
-    show_info: show,
-    branch_info: branch,
+pub struct Config {
+    show_info: Show,
+    branch_info: Branch,
 }
 #[derive(Deserialize, Debug, Clone)]
-pub struct show {
+pub struct Show {
     year: u32,
     show_type: String,
     date: String,
@@ -15,21 +15,21 @@ pub struct show {
     end_time: String,
 }
 #[derive(Deserialize, Debug)]
-struct branch {
+struct Branch {
     branch_name: String,
 }
 
-impl config{
+impl Config{
     pub fn get_branch(&self) -> String{
         self.branch_info.branch_name.to_string()
     }
-    pub fn get_show_info(&self) -> show {
+    pub fn get_show_info(&self) -> Show {
         self.show_info.clone()
     }
 }
-pub fn load_config() -> config{
+pub fn load_config() -> Config{
     let raw_config = std::fs::read_to_string("show_info.toml").unwrap();
-    let config: config = toml::from_str(&raw_config).unwrap();
+    let config: Config = toml::from_str(&raw_config).unwrap();
     println!("{:?}", config);
     config
 }
