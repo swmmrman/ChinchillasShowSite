@@ -3,6 +3,7 @@ use rocket::fs::NamedFile;
 use rocket::response::Redirect;
 use rocket::response::content;
 use rocket::tokio::fs;
+mod config;
 
 #[macro_use] extern crate rocket;
 
@@ -53,6 +54,7 @@ async fn images(img: &str) -> Option<NamedFile> {
 
 #[launch]
 fn rocekt() -> _ {
+    config::load_config();
     rocket::build()
         .mount("/", routes![index, css, js, def_route, images])
 }
