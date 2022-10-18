@@ -3,8 +3,8 @@ use serde_derive::Deserialize;
 
 #[derive(Deserialize, Debug)]
 pub struct Config {
-    show_info: Show,
-    branch_info: Branch,
+    pub show_info: Show,
+    pub branch_info: Branch,
 }
 #[derive(Deserialize, Debug, Clone)]
 pub struct Show {
@@ -15,15 +15,15 @@ pub struct Show {
     pub end_time: String,
 }
 #[derive(Deserialize, Debug)]
-struct Branch {
-    branch_name: String,
+pub struct Branch {
+    pub branch_name: String,
 }
 
 impl Config{
-    pub fn get_branch(&self) -> String{
+    pub fn _get_branch(&self) -> String{
         self.branch_info.branch_name.to_string()
     }
-    pub fn get_show_info(&self) -> Show {
+    pub fn _get_show_info(&self) -> Show {
         self.show_info.clone()
     }
 }
@@ -38,7 +38,7 @@ mod tests {
     #[test]
     fn test_load() {
         let conf = super::load_config();
-        assert!(conf.get_branch() == "Colorado Branch");
+        assert!(conf._get_branch() == "Colorado Branch");
     }
     #[test]
     fn test_date() {
