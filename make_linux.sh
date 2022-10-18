@@ -16,7 +16,4 @@ if [ -e chinchillas_show_site.tar.gz ]; then
     rm chinchillas_show_site.tar.gz
 fi
 
-pushd chinchillas_show_site-linux
-zip chinchillas_show_site.tar.gz -r *
-mv chinchillas_show_site.tar.gz ../
-popd
+tar -czf chinchillas_show_site.tar.gz chinchillas_show_site-linux/
