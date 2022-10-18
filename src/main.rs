@@ -3,6 +3,7 @@ use rocket::fs::NamedFile;
 use rocket::response::Redirect;
 use rocket::response::content;
 use rocket::tokio::fs;
+use chrono::{self, Datelike};
 mod config;
 
 #[macro_use] extern crate rocket;
@@ -16,7 +17,9 @@ async fn css(css_file: &str) -> Option<NamedFile> {
 async fn index() -> content::RawHtml<String> {
     let index: String = fs::read_to_string(Path::new("template").join("index.html")).await.unwrap();
     let template = fs::read_to_string(Path::new("template").join("main.html")).await.unwrap();
-    let output = template.replace("[content]", &index);
+    let mut output = template.replace("[content]", &index);
+    let year = chrono::Utc::now().date().year().to_string();
+    output = output.replace("[year]", &year);
     content::RawHtml(output)
 }
 
@@ -55,9 +58,7 @@ async fn images(img: &str) -> Option<NamedFile> {
 #[launch]
 fn rocket() -> _ {
     let config = config::load_config();
-    let show = config.get_show_info();
-    println!("{:?}", config.get_branch());
-    println!("{:#?}", show);
     rocket::build()
+        .manage(config)
         .mount("/", routes![index, css, js, def_route, images])
 }
