@@ -8,11 +8,11 @@ pub struct Config {
 }
 #[derive(Deserialize, Debug, Clone)]
 pub struct Show {
-    year: u32,
-    show_type: String,
-    date: String,
-    start_time: String,
-    end_time: String,
+    pub year: u32,
+    pub show_type: String,
+    pub date: String,
+    pub start_time: String,
+    pub end_time: String,
 }
 #[derive(Deserialize, Debug)]
 struct Branch {
@@ -32,4 +32,18 @@ pub fn load_config() -> Config{
     let config: Config = toml::from_str(&raw_config).unwrap();
     println!("{:?}", config);
     config
+}
+
+mod tests {
+    #[test]
+    fn test_load() {
+        let conf = super::load_config();
+        assert!(conf.get_branch() == "Colorado Branch");
+    }
+    #[test]
+    fn test_date() {
+        let conf = super::load_config();
+        assert!(conf.show_info.date == "Feb 2nd");
+    }
+
 }
