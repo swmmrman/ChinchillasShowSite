@@ -53,7 +53,7 @@ async fn images(img: &str) -> Option<NamedFile> {
 
 
 #[launch]
-fn rocekt() -> _ {
+fn rocket() -> _ {
     let config = config::load_config();
     let show = config.get_show_info();
     println!("{:?}", config.get_branch());
