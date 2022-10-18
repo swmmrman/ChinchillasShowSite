@@ -38,11 +38,11 @@ async fn def_route(req: &str) -> Option<Redirect>{
 #[get("/images/<img>")]
 async fn images(img: &str) -> Option<NamedFile> {
     if img == "logo.png" {
-        if std::fs::metadata(Path::new("logo.jpg")).is_ok() {
-            NamedFile::open(Path::new("logo.jpg")).await.ok()
+        if std::fs::metadata(Path::new("logo.png")).is_ok() {
+            NamedFile::open(Path::new("logo.png")).await.ok()
         }
         else {
-            NamedFile::open(Path::new("public_html/images/logo.jpg")).await.ok()
+            NamedFile::open(Path::new("public_html/images/logo.png")).await.ok()
         }
     }
     else {
