@@ -6,8 +6,8 @@ pub struct config {
     show_info: show,
     branch_info: branch,
 }
-#[derive(Deserialize, Debug)]
-struct show {
+#[derive(Deserialize, Debug, Clone)]
+pub struct show {
     year: u32,
     show_type: String,
     date: String,
@@ -22,6 +22,9 @@ struct branch {
 impl config{
     pub fn get_branch(&self) -> String{
         self.branch_info.branch_name.to_string()
+    }
+    pub fn get_show_info(&self) -> show {
+        self.show_info.clone()
     }
 }
 pub fn load_config() -> config{

@@ -54,7 +54,10 @@ async fn images(img: &str) -> Option<NamedFile> {
 
 #[launch]
 fn rocekt() -> _ {
-    config::load_config();
+    let config = config::load_config();
+    let show = config.get_show_info();
+    println!("{:?}", config.get_branch());
+    println!("{:#?}", show);
     rocket::build()
         .mount("/", routes![index, css, js, def_route, images])
 }
