@@ -1,0 +1,10 @@
+[show]
+year = 2022
+type = "Standard" #Valid types are Standard, Mutation, Combined or Standard/Mutation
+date = "Feb 2nd"
+start_time = "8am"
+end_time = "6pm"
+
+
+[branch]
+name = "Colorado Branch"
