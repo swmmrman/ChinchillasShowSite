@@ -19,6 +19,11 @@ struct branch {
     branch_name: String,
 }
 
+impl config{
+    pub fn get_branch(&self) -> String{
+        self.branch_info.branch_name.to_string()
+    }
+}
 pub fn load_config() -> config{
     let raw_config = std::fs::read_to_string("show_info.toml").unwrap();
     let config: config = toml::from_str(&raw_config).unwrap();
