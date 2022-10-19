@@ -15,7 +15,7 @@ async fn css(css_file: &str) -> Option<NamedFile> {
 }
 
 #[get("/")]
-async fn index(show: &State<ShowData>) -> content::RawHtml<String> {
+async fn index(show: &State<config::Config>) -> content::RawHtml<String> {
     let index: String = fs::read_to_string(Path::new("template").join("index.html")).await.unwrap();
     let template = fs::read_to_string(Path::new("template").join("main.html")).await.unwrap();
     let mut output = template.replace("[content]", &index);
@@ -57,27 +57,18 @@ async fn images(img: &str) -> Option<NamedFile> {
 }
 
 
-struct ShowData {
-    year: String,
-    show_type: String,
-    date: String,
-    start_time: String,
-    end_time: String,
-}
+// struct ShowData {
+//     year: String,
+//     show_type: String,
+//     date: String,
+//     start_time: String,
+//     end_time: String,
+// }
 
 #[launch]
 fn rocket() -> _ {
     let conf = config::load_config();
-    let show_info = ShowData { 
-        year: "2022".to_string(),
-        show_type: "Standard".to_string(),
-        date: "Feb 20".to_string(),
-        start_time: "10 am".to_string(),
-        end_time: "10pm".to_string(),
-    };
-    
-    let show: &'static config::Show = &conf.show_info;
     rocket::build()
         .mount("/", routes![index, css, js, def_route, images])
-        .manage(show)
+        .manage(conf)
 }
