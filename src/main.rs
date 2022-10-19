@@ -19,7 +19,10 @@ async fn index(show: &State<config::Config>) -> content::RawHtml<String> {
     let index: String = fs::read_to_string(Path::new("template").join("index.html")).await.unwrap();
     let template = fs::read_to_string(Path::new("template").join("main.html")).await.unwrap();
     let mut output = template.replace("[content]", &index);
+    let branch_name = &show.branch_info.branch_name;
+    output = output.replace("[branch]", &branch_name);
     let year = chrono::Utc::now().date().year().to_string();
+    output = output.replace("[date]", &format!("{} {}", &show.show_info.date, &year));
     output = output.replace("[year]", &year);
     output = output.replace("[show info]", "info");
     content::RawHtml(output)
