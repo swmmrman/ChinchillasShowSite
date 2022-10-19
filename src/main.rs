@@ -24,7 +24,8 @@ async fn index(show: &State<config::Config>) -> content::RawHtml<String> {
     let year = chrono::Utc::now().date().year().to_string();
     output = output.replace("[date]", &format!("{} {}", &show.show_info.date, &year));
     output = output.replace("[year]", &year);
-    output = output.replace("[show info]", "info");
+    let header_info = format!("{} {} {} Show", &year, &branch_name, &show.show_info.show_type);
+    output = output.replace("[show info]", &header_info);
     content::RawHtml(output)
 }
 
@@ -58,15 +59,6 @@ async fn images(img: &str) -> Option<NamedFile> {
         NamedFile::open(Path::new("public_html/images/").join(img)).await.ok()
     }
 }
-
-
-// struct ShowData {
-//     year: String,
-//     show_type: String,
-//     date: String,
-//     start_time: String,
-//     end_time: String,
-// }
 
 #[launch]
 fn rocket() -> _ {
