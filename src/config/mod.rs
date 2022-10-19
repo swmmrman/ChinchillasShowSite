@@ -13,6 +13,7 @@ pub struct Show {
     pub date: String,
     pub start_time: String,
     pub end_time: String,
+    pub judges: String,
 }
 #[derive(Deserialize, Debug)]
 pub struct Branch {

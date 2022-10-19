@@ -1,9 +1,10 @@
 [show_info]
 year = 2022
 show_type = "Standard" #Valid types are Standard, Mutation, Combined or Standard/Mutation
-date = "Feb 2nd"
+date = "February 2nd"
 start_time = "8am"
 end_time = "6pm"
+judges = "Maxine Lynch, Tamara Tucker"
 
 
 [branch_info]

@@ -24,6 +24,9 @@ async fn index(show: &State<config::Config>) -> content::RawHtml<String> {
     let year = chrono::Utc::now().date().year().to_string();
     output = output.replace("[date]", &format!("{} {}", &show.show_info.date, &year));
     output = output.replace("[year]", &year);
+    output = output.replace("[judges]", &show.show_info.judges);
+    let show_times = format!("{}-{}", &show.show_info.start_time, &show.show_info.end_time);
+    output = output.replace("[time]", &show_times);
     let header_info = format!("{} {} {} Show", &year, &branch_name, &show.show_info.show_type);
     output = output.replace("[show info]", &header_info);
     content::RawHtml(output)
