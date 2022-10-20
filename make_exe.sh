@@ -10,7 +10,7 @@ cp -r public_html chinchillas_show_site-windows
 cp -r template chinchillas_show_site-windows
 cp Rocket.toml chinchillas_show_site-windows
 cp show_info.toml chinchillas_show_site-windows
-cp target/x86_64-pc-windows-gnu/release/chinchillas_show_site.exe chinchillas_show_site/
+cp target/x86_64-pc-windows-gnu/release/chinchillas_show_site.exe chinchillas_show_site-windows/
 
 if [ -e "chinshow.zip" ]; then
     rm chinshow.zip
