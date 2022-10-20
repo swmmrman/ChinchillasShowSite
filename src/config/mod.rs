@@ -31,7 +31,6 @@ impl Config{
 pub fn load_config() -> Config{
     let raw_config = std::fs::read_to_string("show_info.toml").unwrap();
     let config: Config = toml::from_str(&raw_config).unwrap();
-    println!("{:?}", config);
     config
 }
 
